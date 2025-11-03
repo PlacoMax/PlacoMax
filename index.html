@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PlacomaX</title>
   <style>
-    /* ====== STILI GENERALI ====== */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      background-color: #ffffff;
+      background: #fff;
       color: #000;
       line-height: 1.6;
     }
@@ -21,26 +21,9 @@
       color: black;
     }
 
-    p {
-      color: black;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    /* ====== CONTATTI IN ALTO ====== */
-    .top-contacts {
-      text-align: center;
-      background-color: #f1c40f;
-      color: black;
-      font-weight: 600;
-      padding: 5px 0;
-    }
-
-    /* ====== HEADER ====== */
+    /* HEADER */
     #header {
-      background: #000; /* sfondo nero */
+      background: #000;
       padding: 20px 0;
     }
 
@@ -54,166 +37,257 @@
       padding: 0 20px;
     }
 
-    #header .logo {
-      font-size: 1.8rem;
+    .logo {
+      text-align: center;
+      line-height: 1.2;
       font-weight: 700;
     }
 
-    #header .logo span:first-child {
-      color: #2980b9; /* blu per "PLACO" */
+    .logo-main {
+      font-size: 1.8rem;
     }
 
-    #header .logo span:last-child {
-      color: #f1c40f; /* giallo per "MAX" */
+    .logo-main span:first-child {
+      color: #2980b9;
+    }
+
+    .logo-main span:last-child {
+      color: #f1c40f;
+    }
+
+    .logo-sub {
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 400;
+      margin-top: 4px;
     }
 
     #menu ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
       display: flex;
       gap: 20px;
+      padding: 0;
+      margin: 0;
     }
 
     #menu a {
       color: white;
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: 0.3s;
     }
 
     #menu a:hover {
       color: #f1c40f;
     }
 
-    /* ====== SELETTORE LINGUA ====== */
-    .lang-select {
-      position: relative;
-    }
-
+    /* DROPDOWN LINGUA */
     .dropdown {
       position: relative;
       display: inline-block;
     }
 
     .dropbtn {
-      background-color: #f1c40f;
+      background: #f1c40f;
       color: #000;
       font-weight: 700;
       border: none;
       border-radius: 8px;
       padding: 8px 18px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s, transform 0.2s;
+      transition: 0.3s;
     }
 
     .dropbtn:hover {
-      background-color: #ffd700;
+      background: #ffd700;
       transform: scale(1.05);
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      right: 0; /* apre verso sinistra */
-      background-color: #fff;
+      right: 0;
+      background: #fff;
       min-width: 160px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       border-radius: 8px;
       overflow: hidden;
       z-index: 10;
-      margin-top: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .dropdown-content a {
-      color: #000;
+    .dropdown-content button {
+      width: 100%;
       padding: 10px 14px;
-      text-decoration: none;
-      display: block;
+      border: none;
+      background: none;
+      text-align: left;
       font-weight: 600;
-      transition: background-color 0.3s;
+      cursor: pointer;
     }
 
-    .dropdown-content a:hover {
-      background-color: #f1f1f1;
+    .dropdown-content button:hover {
+      background: #f1f1f1;
     }
 
     .dropdown-content.show {
       display: block;
     }
 
-    /* ====== MOBILE ====== */
-    @media (max-width: 768px) {
-      #menu ul {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-      }
-    }
+    /* SEZIONE LAVORO */
 
-    /* ====== SEZIONE "IL NOSTRO LAVORO" ====== */
     #lavoro {
       padding: 60px 20px;
-      background-color: #fdfdfd;
       text-align: center;
+      /* centra il contenuto orizzontalmente */
+      background: #fdfdfd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* centra anche gli elementi figli come <p> e il carousel */
+      justify-content: center;
+    }
+
+    #lavoro p {
+      max-width: 700px;
+      /* limita la larghezza per una lettura migliore */
+      margin: 15px auto 40px auto;
+      /* spazio sopra e sotto */
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.6;
     }
 
     .work-slider {
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 20px;
       margin-top: 40px;
     }
 
     .work-display {
-      max-width: 500px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+      width: 600px;
       text-align: center;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      background: #fff;
     }
 
     .work-display img {
-      max-height: 300px;
       width: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .work-description {
-      padding: 20px;
-    }
-
-    .work-description h3 {
-      margin: 0 0 10px 0;
-      color: black;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 12px;
     }
 
     .nav-btn {
-      background: none;
+      background: #000;
+      color: #fff;
       border: none;
       font-size: 2rem;
-      color: black;
-      padding: 10px;
+      padding: 10px 15px;
       cursor: pointer;
+      border-radius: 8px;
       transition: 0.3s;
     }
 
     .nav-btn:hover {
-      color: #f1c40f;
+      background: #333;
     }
 
-    /* ====== SEZIONE PREVENTIVO ====== */
+    /* Lightbox */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-prev,
+    .modal-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .modal-prev {
+      left: 30px;
+    }
+
+    .modal-next {
+      right: 30px;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      text-align: center;
+    }
+
+    .modal-content {
+      margin: 5% auto;
+      max-width: 80%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* SEZIONE PREVENTIVO */
     #preventivo {
-      background-color: white;
+      background: white;
       padding: 60px 20px;
+      text-align: center;
     }
 
     .preventivo-header {
-      background-color: #d4af37;
+      background: #d4af37;
       padding: 20px;
       border-radius: 12px 12px 0 0;
       text-align: center;
@@ -227,7 +301,7 @@
     }
 
     .preventivo-box {
-      background-color: #f9f9f9;
+      background: #f9f9f9;
       border: 2px solid #ccc;
       border-radius: 0 0 12px 12px;
       padding: 30px;
@@ -243,6 +317,10 @@
     .form-group.half {
       width: 48%;
       display: inline-block;
+    }
+
+    .form-group.half:first-child {
+      margin-right: 4%;
     }
 
     label {
@@ -264,7 +342,7 @@
       border-radius: 6px;
       font-size: 1rem;
       color: black;
-      background-color: white;
+      background: white;
     }
 
     textarea {
@@ -272,24 +350,24 @@
     }
 
     button[type="submit"] {
-      background-color: black;
+      background: black;
       color: white;
       padding: 12px 25px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s;
+      transition: 0.3s;
       display: block;
       margin: 20px auto 0 auto;
     }
 
     button[type="submit"]:hover {
-      background-color: #333;
+      background: #333;
     }
 
     #uploadStatus {
-      color: rgb(2, 1, 1);
+      color: #000;
     }
 
     #successMessage {
@@ -299,200 +377,495 @@
       font-weight: 600;
     }
 
-    /* ====== FOOTER ====== */
-    footer {
-      background-color: #222;
-      color: white;
+    /* FOOTER */
+    .footer {
       text-align: center;
-      padding: 20px;
+      background: #f1c40f;
+      color: black;
+      font-weight: 600;
+      padding: 5px 0;
     }
 
-    footer p {
-      color: white;
-      margin: 0;
+    footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ====== CONTATTI IN ALTO ====== -->
-  <div class="top-contacts">
-    📞 +41 076 558 3512 | ✉ placomax81@gmail.com
-  </div>
-
-  <!-- ====== HEADER ====== -->
   <header id="header">
     <div class="inner">
       <div class="logo">
-        <span>PLACO</span><span>MAX</span>
+        <div class="logo-main"><span>PLACO</span><span>MAX</span></div>
+        <div class="logo-sub">Plâtrerie & Peinture</div>
       </div>
-
       <nav id="menu">
         <ul>
-          <li><a href="#lavoro">Il Nostro Lavoro</a></li>
-          <li><a href="#preventivo">Preventivo</a></li>
-          <li><a href="#contatti">Contatti</a></li>
+          <li><a href="#lavoro" data-i18n="menu.lavoro">Il Nostro Lavoro</a></li>
+          <li><a href="#preventivo" data-i18n="menu.preventivo">Preventivo</a></li>
+          <li><a href="#contatti" data-i18n="menu.contatti">Contatti</a></li>
         </ul>
       </nav>
-
-      <div class="lang-select">
-        <nav class="dropdown">
-          <button class="dropbtn" id="lang-btn">Lingua</button>
-          <div class="dropdown-content" id="lang-menu">
-            <a href="?lang=it">🇮🇹 Italiano</a>
-            <a href="index francese.html">🇫🇷 Français</a>
-            <a href="index inglese.html">🇬🇧 English</a>
-            <a href="index tedesco.html">🇩🇪 Deutsch</a>
-          </div>
-        </nav>
+      <div class="dropdown">
+        <button id="lang-btn" data-i18n="menu.language">Italiano</button>
+        <div class="dropdown-content" id="lang-menu">
+          <button data-lang="it">🇮🇹 Italiano</button>
+          <button data-lang="fr">🇫🇷 Français</button>
+          <button data-lang="en">🇬🇧 English</button>
+          <button data-lang="de">🇩🇪 Deutsch</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ====== SEZIONE "IL NOSTRO LAVORO" ====== -->
+  <!-- ====== SEZIONE LAVORO ====== -->
   <section id="lavoro">
-    <div class="inner">
-      <h2 class="major">Il Nostro Lavoro</h2>
-      <p>Scorri tra i nostri migliori progetti e scopri la qualità delle nostre realizzazioni.</p>
+    <h2 class="major" data-i18n="lavoro.title">Il Nostro Lavoro</h2>
+    <p data-i18n="lavoro.subtitle">Scorri tra i nostri migliori progetti e scopri la qualità delle nostre realizzazioni.
+    </p>
 
-      <div class="work-slider">
-        <button class="nav-btn prev-btn">&#10094;</button>
-        <div class="work-display">
-          <img id="workImage" src="images/1.jpg" alt="Progetto 1">
-          <div class="work-description">
-            <h3 id="workTitle">Progetto 1</h3>
-            <p id="workText">Cartongesso moderno con illuminazione integrata.</p>
-          </div>
+    <div class="work-slider">
+      <button class="nav-btn prev-btn">&#10094;</button>
+
+      <div class="work-display">
+        <img id="workImage" src="images/1.jpg" alt="Progetto 1" style="cursor:pointer;">
+        <div class="work-description">
+          <h3 id="workTitle" data-i18n="work1.title">Progetto 1</h3>
+          <p id="workText" data-i18n="work1.text">Cartongesso moderno con illuminazione integrata.</p>
         </div>
-        <button class="nav-btn next-btn">&#10095;</button>
       </div>
+
+      <button class="nav-btn next-btn">&#10095;</button>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox"
+      style="display:none; position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:1000;">
+      <span id="closeLightbox"
+        style="position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer;">&times;</span>
+      <button id="lbPrev" class="nav-btn" style="position:absolute;left:20px;">&#10094;</button>
+      <img id="lbImage" src="" style="max-width:80%;max-height:80%;border-radius:12px;">
+      <button id="lbNext" class="nav-btn" style="position:absolute;right:20px;">&#10095;</button>
     </div>
   </section>
-
   <!-- ====== SEZIONE PREVENTIVO ====== -->
   <section id="preventivo">
     <div class="inner text-center">
       <div class="preventivo-header">
-        <h2>Richiedi il tuo preventivo</h2>
+        <h2 data-i18n="preventivo.title">Richiedi il tuo preventivo</h2>
       </div>
-
       <div class="preventivo-box">
-        <p>Compila questo modulo e ricevi il tuo preventivo personalizzato entro 48 ore.</p>
-
+        <p data-i18n="preventivo.subtitle">Compila questo modulo e ricevi il tuo preventivo personalizzato entro 48 ore.
+        </p>
         <form id="preventivoForm" action="https://formspree.io/f/xeopzrdr" method="POST">
-          <!-- campi modulo -->
           <div class="form-group">
-            <label>Nome completo</label>
-            <input type="text" name="name" required placeholder="Mario Rossi">
+            <label data-i18n="preventivo.name">Nome completo</label>
+            <input type="text" name="name" required placeholder="Mario Rossi" data-i18n-placeholder="preventivo.name">
           </div>
           <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" required placeholder="mario.rossi@email.it">
+            <label data-i18n="preventivo.email">Email</label>
+            <input type="email" name="email" required placeholder="mario.rossi@email.it"
+              data-i18n-placeholder="preventivo.email">
           </div>
           <div class="form-group">
-            <label>Telefono</label>
-            <input type="tel" name="phone" required placeholder="+39 333 1234567">
+            <label data-i18n="preventivo.phone">Telefono</label>
+            <input type="tel" name="phone" required placeholder="+39333 1234567"
+              data-i18n-placeholder="preventivo.phone">
           </div>
           <div class="form-group">
-            <label>Luogo del progetto</label>
-            <input type="text" name="location" required placeholder="Milano, Italia">
+            <label data-i18n="preventivo.location">Luogo del progetto</label>
+            <input type="text" name="location" required placeholder="Milano, Italia"
+              data-i18n-placeholder="preventivo.location">
           </div>
           <div class="form-group">
-            <label>Tipo di servizio</label>
+            <label data-i18n="preventivo.service">Tipo di servizio</label>
             <select name="service_type" required>
-              <option value="">Seleziona un servizio</option>
-              <option value="cartongesso">Cartongesso</option>
-              <option value="pittura">Pittura</option>
-              <option value="decorazioni">Decorazioni Murali</option>
-              <option value="ristrutturazione">Ristrutturazione Completa</option>
+              <option value="" data-i18n="preventivo.select">Seleziona un servizio</option>
+              <option value="cartongesso" data-i18n="preventivo.cartongesso">Cartongesso</option>
+              <option value="pittura" data-i18n="preventivo.pittura">Pittura</option>
+              <option value="decorazioni" data-i18n="preventivo.decorazioni">Decorazioni Murali</option>
+              <option value="ristrutturazione" data-i18n="preventivo.ristrutturazione">Ristrutturazione Completa
+              </option>
             </select>
           </div>
           <div class="form-group">
-            <label>Descrizione del progetto</label>
-            <textarea name="project_description" rows="5" placeholder="Descrivi il tuo progetto in dettaglio..."></textarea>
+            <label data-i18n="preventivo.description">Descrizione del progetto</label>
+            <textarea name="project_description" rows="5" placeholder="Descrivi il tuo progetto in dettaglio..."
+              data-i18n-placeholder="preventivo.description"></textarea>
           </div>
           <div class="form-group half">
-            <label>Superficie approssimativa</label>
-            <input type="text" name="surface_area" placeholder="es: 100 m²">
+            <label data-i18n="preventivo.surface">Superficie approssimativa</label>
+            <input type="text" name="surface_area" placeholder="es: 100 m²" data-i18n-placeholder="preventivo.surface">
           </div>
           <div class="form-group half">
-            <label>Tempi desiderati</label>
-            <input type="text" name="timeline" placeholder="es: entro 2 mesi">
+            <label data-i18n="preventivo.timeline">Tempi desiderati</label>
+            <input type="text" name="timeline" placeholder="es: entro 2 mesi"
+              data-i18n-placeholder="preventivo.timeline">
           </div>
           <div class="form-group">
-            <label>Allega file</label>
+            <label data-i18n="preventivo.attachments">Allega file</label>
             <input type="file" id="attachments" multiple>
           </div>
           <input type="hidden" name="attachments_urls" id="attachments_urls">
           <div id="preview"></div>
           <p id="uploadStatus"></p>
-          <p id="successMessage">Grazie! Il tuo modulo è stato inviato. Risponderemo entro 48 ore.</p>
-          <button type="submit">Invia la richiesta</button>
+          <p id="successMessage" data-i18n="preventivo.success">Grazie! Il tuo modulo è stato inviato. Risponderemo
+            entro 48 ore.</p>
+          <button type="submit" data-i18n="preventivo.send">Invia la richiesta</button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- ====== FOOTER ====== -->
+  <div class="footer">
+    📞 +41 076 558 3512 (Massimo) | ✉ placomax81@gmail.com
+  </div>
+
   <footer id="contatti">
-    <p>© <span id="year"></span> PlacomaX — Tutti i diritti riservati.</p>
+    <p data-i18n="footer.copyright">© <span id="year"></span> PlacomaX — Tutti i diritti riservati.</p>
   </footer>
 
-  <!-- ====== SCRIPT ====== -->
   <script>
-    /* MENU LINGUA AL CLICK */
-    const langBtn = document.getElementById('lang-btn');
-    const langMenu = document.getElementById('lang-menu');
-    langBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      langMenu.classList.toggle('show');
-    });
-    document.addEventListener('click', (e) => {
-      if (!langMenu.contains(e.target) && !langBtn.contains(e.target)) {
-        langMenu.classList.remove('show');
-      }
-    });
+    const translations = {
+      it: {
+        "menu.language": "Italiano",
+        "menu.lavoro": "Il Nostro Lavoro",
+        "menu.preventivo": "Preventivo",
+        "menu.contatti": "Contatti",
 
-    /* SLIDER */
-    const works = [
-      { title: "Progetto 1", text: "Cartongesso moderno con illuminazione integrata.", img: "images/1.jpg" },
-      { title: "Progetto 2", text: "Pareti eleganti con finiture decorative personalizzate.", img: "images/2.jpg" },
-      { title: "Progetto 3", text: "Ristrutturazione completa di interni con stile moderno.", img: "images/3.jpg" },
-      { title: "Progetto 4", text: "Decorazioni murali artistiche e colorazioni di pregio.", img: "images/4.jpg" },
-      { title: "Progetto 5", text: "Pittura di interni con materiali di alta qualità.", img: "images/5.jpg" },
-      { title: "Progetto 6", text: "Finiture su misura per spazi residenziali e commerciali.", img: "images/6.jpg" }
+        "lavoro.title": "Il Nostro Lavoro",
+        "lavoro.subtitle": "Scorri tra i nostri migliori progetti e scopri la qualità delle nostre realizzazioni.",
+
+        "work1.title": "Controsoffitto Moderno LED",
+        "work1.text": "Cartongesso moderno con illuminazione integrata e linee minimal per un design elegante.",
+        "work2.title": "Pareti e Finiture di Design",
+        "work2.text": "Pareti in cartongesso con finiture decorative per valorizzare ambienti contemporanei.",
+        "work3.title": "Ristrutturazione Appartamento",
+        "work3.text": "Ristrutturazione completa con tinte neutre e dettagli in stucco veneziano.",
+        "work4.title": "Decorazioni Murali Artistiche",
+        "work4.text": "Effetti decorativi e texture personalizzate per pareti uniche e d’impatto.",
+        "work5.title": "Finiture di Pregio",
+        "work5.text": "Superfici lisce, dettagli curati e pitture di alta qualità per un risultato perfetto.",
+        "work6.title": "Ristrutturazione Chiavi in Mano",
+        "work6.text": "Gestione completa dei lavori, dal progetto alla realizzazione, con materiali di prima scelta.",
+
+        "preventivo.title": "Richiedi il tuo preventivo",
+        "preventivo.subtitle": "Compila questo modulo e ricevi il tuo preventivo personalizzato entro 48 ore.",
+        "preventivo.name": "Nome completo",
+        "preventivo.email": "Email",
+        "preventivo.phone": "Telefono",
+        "preventivo.location": "Luogo del progetto",
+        "preventivo.service": "Tipo di servizio",
+        "preventivo.select": "Seleziona un servizio",
+        "preventivo.cartongesso": "Cartongesso",
+        "preventivo.pittura": "Pittura",
+        "preventivo.decorazioni": "Decorazioni Murali",
+        "preventivo.ristrutturazione": "Ristrutturazione Completa",
+        "preventivo.description": "Descrizione del progetto",
+        "preventivo.surface": "Superficie approssimativa",
+        "preventivo.timeline": "Tempi desiderati",
+        "preventivo.attachments": "Allega file",
+        "preventivo.success": "Grazie! Il tuo modulo è stato inviato. Risponderemo entro 48 ore.",
+        "preventivo.send": "Invia la richiesta",
+        "footer.copyright": "© <span id='year'></span> PlacomaX — Tutti i diritti riservati."
+      },
+
+      fr: {
+        "menu.lavoro": "Notre Travail",
+        "menu.language": "Français",
+        "menu.preventivo": "Devis",
+        "menu.contatti": "Contacts",
+
+        "lavoro.title": "Notre Travail",
+        "lavoro.subtitle": "Parcourez nos meilleurs projets et découvrez la qualité de nos réalisations.",
+
+        "work1.title": "Plafond Moderne à LED",
+        "work1.text": "Cloison en plâtre moderne avec éclairage intégré et lignes minimalistes pour un design élégant.",
+        "work2.title": "Murs et Finitions Design",
+        "work2.text": "Cloisons en plâtre avec finitions décoratives pour valoriser les espaces contemporains.",
+        "work3.title": "Rénovation d’Appartement",
+        "work3.text": "Rénovation complète avec tons neutres et finitions en stuc vénitien.",
+        "work4.title": "Décorations Murales Artistiques",
+        "work4.text": "Effets décoratifs et textures personnalisées pour des murs uniques et expressifs.",
+        "work5.title": "Finitions Haut de Gamme",
+        "work5.text": "Surfaces lisses, détails soignés et peintures de haute qualité pour un résultat parfait.",
+        "work6.title": "Rénovation Clé en Main",
+        "work6.text": "Gestion complète du chantier, du projet à la réalisation, avec des matériaux de premier choix.",
+
+        "preventivo.title": "Demandez votre devis",
+        "preventivo.subtitle": "Remplissez ce formulaire et recevez votre devis personnalisé sous 48 heures.",
+        "preventivo.name": "Nom complet",
+        "preventivo.email": "E-mail",
+        "preventivo.phone": "Téléphone",
+        "preventivo.location": "Lieu du projet",
+        "preventivo.service": "Type de service",
+        "preventivo.select": "Sélectionnez un service",
+        "preventivo.cartongesso": "Plâtrerie",
+        "preventivo.pittura": "Peinture",
+        "preventivo.decorazioni": "Décorations murales",
+        "preventivo.ristrutturazione": "Rénovation complète",
+        "preventivo.description": "Description du projet",
+        "preventivo.surface": "Surface approximative",
+        "preventivo.timeline": "Délais souhaités",
+        "preventivo.attachments": "Joindre des fichiers",
+        "preventivo.success": "Merci ! Votre demande a été envoyée. Nous vous répondrons sous 48 heures.",
+        "preventivo.send": "Envoyer la demande",
+        "footer.copyright": "© <span id='year'></span> PlacomaX — Tous droits réservés."
+      },
+
+      en: {
+        "menu.lavoro": "Our Work",
+        "menu.language": "English",
+        "menu.preventivo": "Quote",
+        "menu.contatti": "Contact",
+
+        "lavoro.title": "Our Work",
+        "lavoro.subtitle": "Browse our best projects and discover the quality of our work.",
+
+        "work1.title": "Modern LED Ceiling",
+        "work1.text": "Modern drywall ceiling with integrated lighting and clean, minimal design.",
+        "work2.title": "Designer Walls and Finishes",
+        "work2.text": "Drywall partitions with decorative finishes enhancing contemporary interiors.",
+        "work3.title": "Apartment Renovation",
+        "work3.text": "Complete renovation with neutral colors and Venetian plaster finishes.",
+        "work4.title": "Artistic Wall Decorations",
+        "work4.text": "Custom textures and decorative effects for unique and expressive walls.",
+        "work5.title": "Premium Finishes",
+        "work5.text": "Smooth surfaces, refined details, and high-quality paints for flawless results.",
+        "work6.title": "Turnkey Renovation",
+        "work6.text": "Full project management, from design to completion, using top-quality materials.",
+
+        "preventivo.title": "Request Your Quote",
+        "preventivo.subtitle": "Fill out this form and receive your personalized quote within 48 hours.",
+        "preventivo.name": "Full Name",
+        "preventivo.email": "Email",
+        "preventivo.phone": "Phone",
+        "preventivo.location": "Project Location",
+        "preventivo.service": "Type of Service",
+        "preventivo.select": "Select a Service",
+        "preventivo.cartongesso": "Drywall",
+        "preventivo.pittura": "Painting",
+        "preventivo.decorazioni": "Wall Decorations",
+        "preventivo.ristrutturazione": "Full Renovation",
+        "preventivo.description": "Project Description",
+        "preventivo.surface": "Approximate Surface Area",
+        "preventivo.timeline": "Desired Timeline",
+        "preventivo.attachments": "Attach Files",
+        "preventivo.success": "Thank you! Your form has been sent. We will reply within 48 hours.",
+        "preventivo.send": "Send Request",
+        "footer.copyright": "© <span id='year'></span> PlacomaX — All rights reserved."
+      },
+
+      de: {
+        "menu.lavoro": "Unsere Arbeit",
+        "menu.language": "Deutsch",
+        "menu.preventivo": "Kostenvoranschlag",
+        "menu.contatti": "Kontakt",
+
+        "lavoro.title": "Unsere Arbeit",
+        "lavoro.subtitle": "Blättern Sie durch unsere besten Projekte und entdecken Sie die Qualität unserer Arbeiten.",
+
+        "work1.title": "Modernes LED-Decke",
+        "work1.text": "Moderne Trockenbau-Decke mit integrierter Beleuchtung und minimalistischem Design.",
+        "work2.title": "Designwände und Oberflächen",
+        "work2.text": "Trockenbauwände mit dekorativen Oberflächen für moderne Innenräume.",
+        "work3.title": "Wohnungsrenovierung",
+        "work3.text": "Komplettsanierung mit neutralen Farbtönen und venezianischem Stuck.",
+        "work4.title": "Künstlerische Wanddekorationen",
+        "work4.text": "Individuelle Texturen und dekorative Effekte für einzigartige Wände.",
+        "work5.title": "Hochwertige Oberflächen",
+        "work5.text": "Glatte Flächen, feine Details und Farben von höchster Qualität für perfekte Ergebnisse.",
+        "work6.title": "Schlüsselfertige Renovierung",
+        "work6.text": "Komplettes Projektmanagement vom Entwurf bis zur Umsetzung mit hochwertigen Materialien.",
+
+        "preventivo.title": "Fordern Sie Ihr Angebot an",
+        "preventivo.subtitle": "Füllen Sie dieses Formular aus und erhalten Sie Ihr persönliches Angebot innerhalb von 48 Stunden.",
+        "preventivo.name": "Vollständiger Name",
+        "preventivo.email": "E-Mail",
+        "preventivo.phone": "Telefon",
+        "preventivo.location": "Projektort",
+        "preventivo.service": "Art der Dienstleistung",
+        "preventivo.select": "Wählen Sie eine Dienstleistung aus",
+        "preventivo.cartongesso": "Trockenbau",
+        "preventivo.pittura": "Malerarbeiten",
+        "preventivo.decorazioni": "Wanddekorationen",
+        "preventivo.ristrutturazione": "Komplettsanierung",
+        "preventivo.description": "Projektbeschreibung",
+        "preventivo.surface": "Ungefähre Fläche",
+        "preventivo.timeline": "Gewünschter Zeitrahmen",
+        "preventivo.attachments": "Dateien anhängen",
+        "preventivo.success": "Danke! Ihr Formular wurde gesendet. Wir antworten innerhalb von 48 Stunden.",
+        "preventivo.send": "Anfrage senden",
+        "footer.copyright": "© <span id='year'></span> PlacomaX — Alle Rechte vorbehalten."
+      }
+    };
+
+
+
+
+    function translatePage(lang) {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+    }
+
+  
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        localStorage.setItem("lang", lang);
+        translatePage(lang);
+        document.getElementById("lang-menu").classList.remove("show");
+      });
+    });
+    document.getElementById("lang-btn").onclick = e => {
+      e.stopPropagation();
+      document.getElementById("lang-menu").classList.toggle("show");
+    };
+    document.addEventListener("click", () => document.getElementById("lang-menu").classList.remove("show"));
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const closeBtn = document.querySelector('.close');
+    const prevBtn = document.querySelector('.modal-prev');
+    const nextBtn = document.querySelector('.modal-next');
+
+
+
+
+    const images = [
+      {
+        src: 'images/1.jpg',
+        title: 'Controsoffitto Moderno LED',
+        text: 'Cartongesso moderno con illuminazione integrata e linee minimal per un design elegante.'
+      },
+      {
+        src: 'images/2.jpg',
+        title: 'Pareti e Finiture di Design',
+        text: 'Pareti in cartongesso con finiture decorative per valorizzare ambienti contemporanei.'
+      },
+      {
+        src: 'images/3.jpg',
+        title: 'Ristrutturazione Appartamento',
+        text: 'Ristrutturazione completa con tinte neutre e dettagli in stucco veneziano.'
+      },
+      {
+        src: 'images/4.jpg',
+        title: 'Decorazioni Murali Artistiche',
+        text: 'Effetti decorativi e texture personalizzate per pareti uniche e d’impatto.'
+      },
+      {
+        src: 'images/5.jpg',
+        title: 'Finiture di Pregio',
+        text: 'Superfici lisce, dettagli curati e pitture di alta qualità per un risultato perfetto.'
+      },
+      {
+        src: 'images/6.jpg',
+        title: 'Ristrutturazione Chiavi in Mano',
+        text: 'Gestione completa dei lavori, dal progetto alla realizzazione, con materiali di prima scelta.'
+      }
     ];
 
     let currentIndex = 0;
-    const imageEl = document.getElementById("workImage");
-    const titleEl = document.getElementById("workTitle");
-    const textEl = document.getElementById("workText");
+    const workImage = document.getElementById('workImage');
+    const workTitle = document.getElementById('workTitle');
+    const workText = document.getElementById('workText');
 
-    function showWork(i) {
-      const w = works[i];
-      imageEl.src = w.img;
-      titleEl.textContent = w.title;
-      textEl.textContent = w.text;
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+
+    function showImage(index) {
+      if (index < 0) index = images.length - 1;
+      if (index >= images.length) index = 0;
+      currentIndex = index;
+      workImage.src = images[currentIndex].src;
+      workTitle.textContent = images[currentIndex].title;
+      workText.textContent = images[currentIndex].text;
+    }
+    function translatePage(lang) {
+      // Traduci testi standard
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+
+      // Traduci placeholder form
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
+      });
+
+      // Aggiorna anno
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Aggiorna testi del carousel
+      images.forEach((img, i) => {
+        img.title = translations[lang][`work${i + 1}.title`];
+        img.text = translations[lang][`work${i + 1}.text`];
+      });
+
+      // Mostra immagine corrente aggiornata
+      showImage(currentIndex);
     }
 
-    document.querySelector(".next-btn").onclick = () => {
-      currentIndex = (currentIndex + 1) % works.length;
-      showWork(currentIndex);
-    };
-    document.querySelector(".prev-btn").onclick = () => {
-      currentIndex = (currentIndex - 1 + works.length) % works.length;
-      showWork(currentIndex);
-    };
-    showWork(currentIndex);
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % works.length;
-      showWork(currentIndex);
-    }, 5000);
+    // Salva lingua scelta e applica traduzione
+    const savedLang = localStorage.getItem("lang") || "it";
+    translatePage(savedLang);
 
-    /* ANNO AUTOMATICO FOOTER */
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        localStorage.setItem("lang", lang);
+        translatePage(lang);
+        document.getElementById("lang-menu").classList.remove("show");
+      });
+    });
+
+    // Gestione menu lingua
+    document.getElementById("lang-btn").onclick = e => {
+      e.stopPropagation();
+      document.getElementById("lang-menu").classList.toggle("show");
+    };
+    document.addEventListener("click", () => document.getElementById("lang-menu").classList.remove("show"));
+
+    // Cambia immagine nel carousel principale
+    document.querySelector('.prev-btn').addEventListener('click', () => showImage(currentIndex - 1));
+    document.querySelector('.next-btn').addEventListener('click', () => showImage(currentIndex + 1));
+
+    // Apri lightbox cliccando sull'immagine
+    workImage.addEventListener('click', () => {
+      lbImage.src = images[currentIndex].src;
+      lightbox.style.display = 'flex';
+    });
+
+    // Pulsanti avanti/indietro nel lightbox
+    lbPrev.addEventListener('click', () => {
+      currentIndex = currentIndex - 1 < 0 ? images.length - 1 : currentIndex - 1;
+      lbImage.src = images[currentIndex].src;
+    });
+    lbNext.addEventListener('click', () => {
+      currentIndex = currentIndex + 1 >= images.length ? 0 : currentIndex + 1;
+      lbImage.src = images[currentIndex].src;
+    });
+
+    // Chiudi lightbox
+    closeLightbox.addEventListener('click', () => lightbox.style.display = 'none');
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
   </script>
-</body>
-</html>
 
+</body>
+
+</html>
